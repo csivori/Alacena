@@ -1,0 +1,39 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      <h1 class="h3">Borrando {{entidad}}</h1>
+      <p class="lead">Estás a punto de borrar a {{itemABorrar[1]}}. Asegurate de hacer click en "Confirmar eliminación".</p>
+    </div>        
+  </div>
+  <div class="container px-4 mt-3">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-7 col-md-6 col-lg-4" >
+        <div class="card border p-4 rounded-3 bg-light">
+          <img class="card-img-top" src="{{itemABorrar[2]}}" alt="Foto de {{itemABorrar[1]}}" />
+          <div class="card-body pb-0">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{itemABorrar[1]}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5 col-md-6 col-lg-4">
+        <form id="formBorrar{{entidad}}"
+              action="/{{entidad}}/borrar2/{{itemABorrar[0]}}"
+              method="POST" class="was-validated border p-2 rounded-3 bg-light">
+          <div class="row text-center">
+            <div class="col-12 mb-2">
+              <p class="lead m-0">Estás seguro?</p>
+            </div>
+            <div class="col-12">
+              <a href="{{retornarA}}" class="btn btn-secondary">Mejor no</a>
+              <button type="submit" class="btn btn-danger">Sí, borrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'comunes/finHtml.html' %}

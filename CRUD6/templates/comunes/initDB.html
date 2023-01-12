@@ -1,0 +1,29 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+  <div class="container">
+    <div class="row align-items-center mt-3">
+      <div class="col-md-7 col-lg-12" >
+        <form id="formEjecutarDB" action="/testDB/ejecucion2"
+          method="POST" class="was-validated border p-4 rounded-3 bg-light">
+          <h2>2.- Ejecutar</h2>
+          <div class="row">
+            <div class="col-sm-10 mb-3">
+              <textarea class="form-control" id="queryAEjecutar" name="queryAEjecutar" style="height: 250px"></textarea>
+            </div>
+            <div class="col-sm-2 mt-4 pt-2">
+              <div class="position-relative">
+                <a href="/" class="btn btn-secondary">Volver atrás</a>
+                <button type="submit" class="btn btn-warning mt-2" style="height: 6rem;">Ejecutar</button>
+              </div>
+            </div>
+            <div class="col-sm-12 border">
+              <p>{{detalle5}}</p>
+              <p>{{ejecucion}}</p>
+              <p>{{detalle6}}</p>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'comunes/finHtml.html' %}

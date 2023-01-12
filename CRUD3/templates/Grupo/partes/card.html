@@ -1,0 +1,20 @@
+{% for grupo in lista %}
+  <tr class="table-success">
+    <td>
+      <a 
+        href="/Producto/listarXGrupo/{{grupo[0]}}"
+        class="btn btn-block w-50">{{grupo[1]}}</a>
+    </td>
+    <td>
+      <!-- Aciones -->
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <a href="/{{entidad}}/modificar/{{grupo[0]}}" class="btn btn-warning btn-block w-100">Editar</a>
+        </div>
+        <div class="col-6">
+          <a href="/{{entidad}}/borrar/{{grupo[0]}}" class="btn btn-danger btn-block w-100">Borrar</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endfor %}

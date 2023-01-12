@@ -1,0 +1,28 @@
+{% for producto in lista %}
+<div class="col">
+    <div class="card h-100">
+        <!-- Foto -->        
+        <img class="card-img-top img-fluid" src="{{producto[5]}}" alt="Foto de {{producto[3]}}" />
+        
+        <!-- Detalles -->
+        <div class="card-body p-4">
+            <div class="text-center">
+                <h5 class="fw-bolder">{{producto[3]}}</h5>
+                <h6 class="fw-lighter">({{producto[2]}})</h6>
+                <p class="mb-1">Cantidad: {{producto[4]}}</p>
+            </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer border-top-0 bg-transparent">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <a href="/{{entidad}}/modificar/{{producto[0]}}" class="btn btn-warning btn-block w-100">Editar</a>
+                </div>
+                <div class="col-6">
+                    <a href="/{{entidad}}/borrar/{{producto[0]}}" class="btn btn-danger btn-block w-100">Borrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

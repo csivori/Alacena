@@ -1,0 +1,38 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      <h1 class="h3">Editando {{entidad}}</h1>
+      <p class="lead">Estás a punto de editar a {{itemAEditar[1]}}. Asegurate de hacer click en "Confirmar cambios".</p>
+    </div>
+  </div>
+  <div class="container px-4 mt-3">
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8" >
+        <form id="formModificar{{entidad}}" action="/{{entidad}}/modificar2/{{itemAEditar[0]}}"
+          method="post" class="was-validated border p-4 rounded-3 bg-light">
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{itemAEditar[1]}}" required>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label for="abreviatura" class="form-label">Abreviatura</label>
+              <input type="text" class="form-control" id="abreviatura" name="abreviatura" value="{{itemAEditar[2]}}" required>
+            </div>
+
+          </div>
+          <div class="row justify-content-end mt-2">
+            <div class="col-12">
+              <div class="float-end">
+                <a href="{{retornarA}}" class="btn btn-secondary">Volver atrás</a>
+                <button type="submit" class="btn btn-warning">Confirmar cambios</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'comunes/finHtml.html' %}

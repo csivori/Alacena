@@ -1,0 +1,38 @@
+{% include 'comunes/inicioHtml.html' %}
+<div class="container mt-3">
+  <h1 class="h3">Listado de {{entidad}}s</h1>
+  <p class="lead">Se listan todos los {{entidad}}s existentes en la base de datos</p>
+
+  <div>
+    <a href="#" class="btn btn-success"
+       data-bs-toggle="modal" data-bs-target="#modalAgregar{{entidad}}">Agregar {{entidad}}</a>
+  </div>
+
+  {% if listaVacia %}
+    <div class="row mt-4">
+      <div class="col-12">
+          <p class="display-5 text-danger">Ooops! Parece que no hay {{entidad}}s...</p>
+      </div>
+    </div>
+  {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Fecha de Vencimiento</th>
+          <th>Fecha de Compra</th>
+          <th>Fecha de Uso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% include 'Tenencia/partes/card.html' %}
+      </tbody>
+    </table>
+  {% endif %}
+  <div>
+    <a href="/Producto/listar" class="btn btn-primary">Volver a Productos</a>
+  </div>
+</div>
+{% include 'Tenencia/partes/modalAgregar.html' %}
+{% include 'comunes/finHtml.html' %}

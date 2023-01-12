@@ -1,0 +1,31 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      <h1 class="h3">Listado de {{entidad}}s</h1>
+      <p class="lead">Se listan todos los {{entidad}}s existentes en la base de datos</p>
+      <div>
+        <a href="#" class="btn btn-success" data-bs-toggle="modal" 
+           data-bs-target="#modalAgregar{{entidad}}">Agregar {{entidad}}</a>
+      </div>
+    </div>
+    {% if listaVacia %}
+      <div class="row mt-4">
+        <div class="col-12">
+          <p class="display-5 text-danger">Ooops! Parece que no hay {{entidad}}s...</p>
+        </div>
+      </div>
+    {% else %}
+      <div class="row g-4 mt-3 mb-5 pb-5 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5" data-masonry='{"percentPosition": true }' >
+          {% include 'Producto/partes/cards.html' %}
+      </div>
+    {% endif %}
+    <div>
+      <a href="/Grupo/listar" class="btn btn-primary">Volver a Grupos</a>
+    </div>        
+  </div>
+</section>
+
+{% include 'Producto/partes/modalAgregar.html' %}
+<script src="/static/scripts/fotobase64.js"></script>
+{% include 'comunes/finHtml.html' %}

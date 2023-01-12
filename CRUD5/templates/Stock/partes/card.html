@@ -1,0 +1,30 @@
+{% for tenencia in lista %}
+  <tr class="table-success">
+    <td>{{tenencia[5]}}</td>
+    <td>{{tenencia[1]}}</td>
+    <td>{{tenencia[2]}}</td>
+    <td> 
+      <!-- No logro que identifique "None" -->
+      {% if tenencia[3] == "None" %}
+        -
+      {% else %}
+        {{tenencia[3]}}
+      {% endif %}
+    </td>
+    <td>
+      <!-- Aciones -->
+      <div class="row justify-content-center">
+        <div class="col-6 d-flex flex-wrap">
+          <a href="/{{entidad}}/modificar/{{tenencia[0]}}" class="btn btn-warning btn-block w-100">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="/{{entidad}}/borrar/{{tenencia[0]}}" class="btn btn-danger btn-block w-100">
+            <i class="bi bi-trash3-fill"></i>
+          </a>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endfor %}

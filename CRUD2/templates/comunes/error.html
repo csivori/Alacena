@@ -1,0 +1,14 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+    <div class="alert alert-{{alertaTipo}} mx-5 mt-3 mb-0" role="alert">
+        <h3>{{alertaTitulo}}</h3>
+        <br>
+        <h5>CAUSA: {{alertaMsgCausa}}</h5>
+        <h5>SOLUCION: {{alertaMsgSolucion}}</h5>
+        <br>
+        <h6>Para informar a SISTEMAS: {{alertaMsgRaiz}}</h6>
+    </div>
+    <br>
+    <a class="btn btn-primary mx-5" href="{{alertaProximoPaso}}">Continuar</a>
+</section>
+{% include 'comunes/finHtml.html' %}

@@ -1,0 +1,50 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      <h1 class="h3">Borrando {{entidad}}</h1>
+      <p class="lead">Estás a punto de borrar a {{itemABorrar[2]}}. Asegurate de hacer click en "Confirmar eliminación".</p>
+    </div>
+  </div>
+  <div class="container px-4 mt-3">
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8" >
+        <form id="formAgregar{{entidad}}" action="/{{entidad}}/borrar2/{{itemABorrar[0]}}"
+          method="post" class="was-validated border p-4 rounded-3 bg-light">
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label for="descripcion" class="form-label">Descripcion</label>
+              <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{itemABorrar[2]}}" readonly>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento</label>
+              <input type="date" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="{{itemABorrar[3]}}" readonly>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label for="fecha_compra" class="form-label">Fecha de Compra</label>
+              <input type="date" class="form-control" id="fecha_compra" name="fecha_compra" value="{{itemABorrar[4]}}" readonly>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label for="fecha_uso" class="form-label">Fecha de Uso</label>
+              <input type="date" class="form-control" id="fecha_uso" name="fecha_uso" value="{{itemABorrar[5]}}" readonly>
+            </div>
+
+
+
+
+
+          </div>
+          <div class="row justify-content-end mt-2">
+            <div class="col-12">
+              <div class="float-end">
+                <a href="{{retornarA}}" class="btn btn-secondary">Volver atrás</a>
+                <button type="submit" class="btn btn-warning">Confirmar eliminación</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'comunes/finHtml.html' %}

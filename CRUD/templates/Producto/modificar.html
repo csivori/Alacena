@@ -1,0 +1,72 @@
+{% include 'comunes/inicioHtml.html' %}
+<section class="py-3">
+    <div class="container">
+        <div class="row">
+            <h1 class="h3">Editando {{entidad}}</h1>
+            <p class="lead">Estás a punto de editar a {{itemAEditar[3]}}. Asegurate de hacer click en "Confirmar cambios".</p>
+        </div>
+    </div>
+    <div class="container px-4 mt-3">
+        <div class="row align-items-center">
+            <div class="col-md-5 col-lg-4" >
+                <div class="card border p-4 rounded-3 bg-light">
+                    <img class="card-img-top" id="imagen{{entidad}}" src="{{itemAEditar[5]}}" alt="Foto de {{itemAEditar[3]}}" />
+                    <div class="card-body pb-0">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{itemAEditar[3]}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-8" >
+                <form id="formModificar{{entidad}}" action="/{{entidad}}/modificar2/{{itemAEditar[0]}}"
+                      method="post" class="was-validated border p-4 rounded-3 bg-light">
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <label for="grupo" class="form-label">Grupo</label>
+                            <select class="form-control" id="grupo" name="grupo" placeholder="Ingrese un Grupo" required>
+                                {% for grupo in listaGrupos %}
+                                    {% if grupo[0] == itemAEditar[1] %}
+                                        <option value="{{grupo[0]}}" selected>{{grupo[1]}}</option>
+                                    {% else %}
+                                        <option value="{{grupo[0]}}">{{grupo[1]}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{itemAEditar[3]}}" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" min="0" pattern="[0-9]" class="form-control" id="stock" name="stock" value="{{itemAEditar[4]}}" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="foto" class="form-label">
+                              {% if itemAEditar[5] %}
+                                Modificar 
+                              {% else %}
+                                Agregar 
+                              {% endif %}
+                                foto
+                            </label>
+                            <input type="file" class="form-control" id="inputFoto" name="foto">
+                            <input type="hidden" id="fotoBase64" name="fotoBase64" value="{{itemAEditar[5]}}">
+                        </div>
+                    </div>
+                    <div class="row justify-content-end mt-2">
+                        <div class="col-12">
+                            <div class="float-end">
+                                <a href="{{retornarA}}" class="btn btn-secondary">Volver atrás</a>
+                                <button type="submit" class="btn btn-warning">Confirmar cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/static/scripts/fotobase64.js"></script>
+{% include 'comunes/finHtml.html' %}
