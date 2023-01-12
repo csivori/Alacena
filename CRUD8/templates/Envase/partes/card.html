@@ -1,0 +1,31 @@
+{% for envase in lista %}
+  <tr class="table-success">
+    <td>
+      <a href="/Stock/listarXProducto/{{envase[2]}}" class="btn btn-block w-50">
+        <span>
+          {{envase[3]}}
+          <small class="text-muted">
+            <a href="/Stock/listarXEnvase/{{envase[0]}}" class="btn btn-block w-50">
+               ({{envase[5]}} de {{envase[1]}} {{envase[6]}}) 
+            </a>
+          </small>
+        </span>
+      </a>
+    </td>
+    <td>
+      <!-- Aciones -->
+      <div class="row justify-content-center">
+        <div class="col-6 d-flex flex-wrap">
+          <a href="/{{entidad}}/modificar/{{envase[0]}}" class="btn btn-warning btn-block w-100">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="/{{entidad}}/borrar/{{envase[0]}}" class="btn btn-danger btn-block w-100">
+            <i class="bi bi-trash3-fill"></i>
+          </a>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endfor %}

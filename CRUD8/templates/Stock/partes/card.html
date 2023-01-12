@@ -1,0 +1,55 @@
+{% for tenencia in lista %}
+  <tr class="table-success">
+    <td>{{tenencia[5]}}</td>
+    <td>
+      {% if tenencia[1] > fechaHoy %}
+        <span>
+      {% else %}
+        {% if tenencia[1] < fechaAyer %}
+          <span class="badge bg-danger">
+        {% else %}
+          <span class="badge bg-warning">
+        {% endif %}
+      {% endif %}
+      {{tenencia[1]}}</span>
+    </td>
+    <td>{{tenencia[2]}}</td>
+    {% if noMostarFechaUso %}
+    {% else %}
+      <td>{{tenencia[3]}}</td>
+    {% endif %}
+    <td>
+      <!-- Aciones -->
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <a href="/{{entidad}}/modificar/{{tenencia[0]}}" class="btn btn-warning btn-block w-100">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="/{{entidad}}/borrar/{{tenencia[0]}}" class="btn btn-danger btn-block w-100">
+            <i class="bi bi-trash3-fill"></i>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href=
+            {% if retornarAEspecial != "" %}
+              "/{{entidad}}/consumir/{{tenencia[0]}}?retornarA={{retornarAEspecial}}"
+            {% else %}
+              "/{{entidad}}/consumir/{{tenencia[0]}}" 
+            {% endif %}
+          class="btn btn-primary btn-block w-100">-1</a>
+        </div>
+        <div class="col-3">
+          <a href=
+          {% if retornarAEspecial != "" %}
+            "/{{entidad}}/duplicar/{{tenencia[0]}}?retornarA={{retornarAEspecial}}"
+          {% else %}
+            "/{{entidad}}/duplicar/{{tenencia[0]}}"
+          {% endif %}
+          class="btn btn-success btn-block w-100">+1</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endfor %}

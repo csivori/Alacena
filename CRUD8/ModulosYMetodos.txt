@@ -1,0 +1,19 @@
+db()
+- obtenerTodos(stmt):
+- obtenerAlgunos(stmt, datos)
+- obtenerUno(stmt, datos)
+- ejecutarUnitario(stmt, datos)
+- getUltimaExcepcion()
+
+CS_DB_CRUD_Entidad()
+- crear((<datos>), descripcion)
+
+CS_WEB_CRUD_Entidad()
+- accionListar()
+- setContextForSelect()
+- render_templateErrorDB()
+- accionBuscar()
+- accionBuscarEspecial(condicionWhere, datos)
+- accionCrear2()
+- requestToDatos()
+- retornarA("<acción>")
