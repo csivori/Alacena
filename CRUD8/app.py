@@ -7,13 +7,25 @@ from libCS.dbEntidad import CS_DB_CRUD_Entidad2_FK
 from libCS.dbInit import CS_DB_Initialization
 from libCS.webEntidad import CS_WEB_CRUD_Entidad
 
+#Defino el Ambiente
+__ambiente__ = "L" # Web Server y MySQL Server local en la PC
+# __ambiente__ = "F" # Web Server local en la PC y MySQL Server en Free MySQL Hosting
+# __ambiente__ = "P" # Web Server y MySQL Server en www.PythonAnywhere.com
+# __ambiente__ = "G" # Web Server y MySQL Server en Google Cloud
+
 #Creo la app Flask
 app = Flask(__name__)
 
 #Creo la conexión a la DB
-# mysql = CS_MySQL(appFlask=app, host='localhost', usr='root', pwd='', port=3306, db='crud_python_tf')
-mysql = CS_MySQL(appFlask=app, host='cafeigso.mysql.pythonanywhere-services.com', usr='cafeigso', pwd='mardel1234', port=3306, db='cafeigso$alacena')
-# mysql = CS_MySQL(appFlask=app, host='sql10.freemysqlhosting.net', usr='sql10588086', pwd='3tQCvx6VMZ', port=3306, db='sql10588086')
+if __ambiente__ == "L":
+  mysql = CS_MySQL(appFlask=app, host='localhost', usr='root', pwd='', port=3306, db='crud_python_tf')
+elif __ambiente__ == "F":
+  mysql = CS_MySQL(appFlask=app, host='sql10.freemysqlhosting.net', usr='sql10588086', pwd='3tQCvx6VMZ', port=3306, db='sql10588086')
+elif __ambiente__ == "P":
+  mysql = CS_MySQL(appFlask=app, host='cafeigso.mysql.pythonanywhere-services.com', usr='cafeigso', pwd='mardel1234', port=3306, db='cafeigso$alacena')
+elif __ambiente__ == "G":
+  pass
+
 test = CS_DB_Initialization(appFlask=app, mysql=mysql)
 
 # Prod_pres
@@ -98,7 +110,7 @@ def listarStockAConsumir():
 
 @app.route('/Producto/consumir')
 def consumirProductos():
-  mostrarInfoXConsola("****** Entró en Acción Consumir Productos!!!")
+  mostrarInfoXConsola(f"\n****** Entró en Acción Consumir Productos!!!")
   context = {}
   context["tituloEspecial"] = "a Consumir"
   context["retornarAEspecial"] = "/Producto/consumir"
@@ -107,7 +119,7 @@ def consumirProductos():
 
 @app.route('/Producto/consumir/<int:idProducto>')
 def consumirXProducto(idProducto):
-  mostrarInfoXConsola("****** Entró en Acción Consumir X Producto!!!")
+  mostrarInfoXConsola(f"\n****** Entró en Acción Consumir X Producto!!!")
   context = {}
   context["tituloEspecial"] = "a Consumir"
   context["retornarAEspecial"] = "/Producto/consumir/" + str(idProducto)
@@ -119,7 +131,7 @@ def consumirXProducto(idProducto):
 
 @app.route('/Stock/consumir/<int:idStock>')
 def consumirStock(idStock):
-  mostrarInfoXConsola("****** Entró en Acción Consumir !!!")
+  mostrarInfoXConsola(f"\n****** Entró en Acción Consumir !!!")
   stmt = "UPDATE stock SET fecha_uso=NOW() WHERE id=%s"
   retornarAEspecial = request.args.get('retornarA')
   mostrarInfoXConsola(f"{retornarAEspecial=}")
@@ -134,7 +146,7 @@ def consumirStock(idStock):
 
 @app.route('/Stock/duplicar/<int:idStock>')
 def duplicarStock(idStock):
-  mostrarInfoXConsola("****** Entró en Acción Duplicar !!!")
+  mostrarInfoXConsola(f"\n****** Entró en Acción Duplicar !!!")
   stmt = "INSERT INTO stock (id, id_envase, fecha_vencimiento, fecha_compra, fecha_uso) SELECT NULL, id_envase, fecha_vencimiento, fecha_compra, NULL FROM stock WHERE id=%s"
   retornarAEspecial = request.args.get('retornarA')
   if t.ejecutarUnitario(idStock, "seleccionado", stmt, "Duplicado"):
@@ -197,5 +209,7 @@ def listarStockXEnvase(idEnvase):
 #     return native.strftime(ftm)
 
 if __name__ == '__main__':
-  app.run(debug=True, host='localhost', port=5000)
-  # app.run(debug=False, host='localhost', port=5000)
+  if __ambiente__ == "L" or __ambiente__ == "F":
+    app.run(debug=True, host='localhost', port=5000)
+  elif __ambiente__ == "P":
+    app.run(debug=False, port=5000)
