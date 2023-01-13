@@ -12,7 +12,8 @@ app = Flask(__name__)
 
 #Creo la conexión a la DB
 # mysql = CS_MySQL(appFlask=app, host='localhost', usr='root', pwd='', port=3306, db='crud_python_tf')
-mysql = CS_MySQL(appFlask=app, host='sql10.freemysqlhosting.net', usr='sql10588086', pwd='3tQCvx6VMZ', port=3306, db='sql10588086')
+mysql = CS_MySQL(appFlask=app, host='cafeigso.mysql.pythonanywhere-services.com', usr='cafeigso', pwd='mardel1234', port=3306, db='cafeigso$alacena')
+# mysql = CS_MySQL(appFlask=app, host='sql10.freemysqlhosting.net', usr='sql10588086', pwd='3tQCvx6VMZ', port=3306, db='sql10588086')
 test = CS_DB_Initialization(appFlask=app, mysql=mysql)
 
 # Prod_pres
