@@ -3,9 +3,6 @@ from flask import Flask, redirect, render_template, request
 from libCS.db import CS_MySQL
 from libCS.dbEntidad import CS_DB_CRUD_Entidad2, CS_DB_CRUD_Entidad2_FK
 from libCS.utils import mostrarErrorXConsola, mostrarInfoXConsola
-# from db import CS_MySQL
-# from dbEntidad import CS_DB_CRUD_Entidad2, CS_DB_CRUD_Entidad2_FK
-# from utils import mostrarErrorXConsola, mostrarInfoXConsola
 
 class CS_WEB_CRUD_Entidad():
   """El objeto CS_WEB_CRUD_Entidad implementa una serie de métodos para facilitar la construcción de un CRUD Básico. Soporta automáticamente las siguientes operaciones:
@@ -73,6 +70,9 @@ Principales Métodos:
 
   def obtenerUno(self, datos):
     return self.objDB_CRUD.obtenerUno(datos)
+
+  def obtenerUltimoId(self):
+    return self.objDB_CRUD.obtenerUltimoId()
 
   def ejecutarUnitario(self, datos, descripcion, stmt, accionEnParticipioPasado)->bool:
     return self.objDB_CRUD.ejecutarUnitario(datos, descripcion, stmt, accionEnParticipioPasado)
@@ -184,6 +184,15 @@ Principales Métodos:
     """
     Accion = accion.capitalize()
     mostrarErrorXConsola("webEntidad.py", f"accion{Accion}()", f"No se pudo {Accion} {self.objDB_CRUD.strEntidad()}")
+    context = self.setContextForErrorMsg(f"NO se pudo {Accion} {self.objDB_CRUD.strEntidad()}", self.getLastErrorMsg(), self.getRetornarA(accion))
+    return render_template(f'comunes/error.html', **context)
+
+  def render_templateEnConstruccion(self, pagina)->str:
+    """Muestra la Pantalla de Errores indicando que esta Página esta aún en Construcción.
+
+    :param accion: El nombre de la acción que esta aún en construcción
+    """
+    mostrarInfoXConsola(f"La página {pagina} está en Construcción", "webEntidad.py", "render_templateEnConstruccion()")
     context = self.setContextForErrorMsg(f"NO se pudo {Accion} {self.objDB_CRUD.strEntidad()}", self.getLastErrorMsg(), self.getRetornarA(accion))
     return render_template(f'comunes/error.html', **context)
 

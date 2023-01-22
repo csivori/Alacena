@@ -83,6 +83,9 @@ Principales Métodos:
   def obtenerUno(self, datos):
     return self.objDB.obtenerUno(self.getSelectOneStmt(), datos)
 
+  def obtenerUltimoId(self):
+    return self.objDB.obtenerUno(self.getSelectUltimoId(), ())[0]
+
   def ejecutarUnitario(self, datos, descripcion, stmt, accionEnParticipioPasado)->bool:
     if self.objDB.ejecutarUnitario(stmt, datos):
       mostrarInfoXConsola(f"{self.strEntidad().capitalize()} {descripcion} se ha {accionEnParticipioPasado} EXITOSAMENTE!")
@@ -139,6 +142,9 @@ Principales Métodos:
     stmt += " " + self.getWhereByPKStmt(self.tieneFK())
     mostrarInfoXConsola(f"getSelectOneStmt(): {stmt}")
     return stmt
+
+  def getSelectUltimoId(self)->str:
+   return "SELECT MAX(id) FROM " + self.getTabla("")
 
   def getInsertStmt(self)->str:
     stmt = "INSERT INTO " + self.getTabla("") + " ("

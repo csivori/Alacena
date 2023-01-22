@@ -3,6 +3,9 @@
   <div class="row">
     <div class="col-11">
       <h1 class="h3">{{entidad}}s {{tituloEspecial}}</h1>
+      {% if lista[0] %}
+        <p class="lead">{{lista[0][5]}}</p>    
+      {% endif %}
     </div>
     <div class="col-1">
       <div class="float-end mt-0">  
@@ -20,15 +23,15 @@
       </div>
     </div>
   {% else %}
-    <div class="row g-2 mt-0 mb-1 pb-1 row-cols-3 row-cols-sm-4 row-cols-md-5 row-cols-xl-6" data-masonry='{"percentPosition": true }' >
-        {% include 'Producto/partes/cardPrincipal.html' %}
+    <div class="row g-2 mt-0 mb-1 pb-1 row-cols-1 row-cols-lg-2" data-masonry='{"percentPosition": true }' >
+        {% include 'Stock/partes/cardPrincipal.html' %}
     </div>
   {% endif %}
   <div>
-    <a href="/Producto/listar" class="btn btn-primary">Ir a Productos</a>
-  </div>        
+    <a href="/Producto/consumir" class="btn btn-primary">Ir a Productos</a>
+  </div>
 </section>
 
-{% include 'Producto/partes/modalAgregar.html' %}
+{% include 'Stock/partes/modalAgregar.html' %}
 <script src="/static/scripts/fotobase64.js"></script>
 {% include 'comunes/finHtml.html' %}

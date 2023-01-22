@@ -1,53 +1,56 @@
-{% for tenencia in lista %}
+{% for stock in lista %}
   <tr class="table-success">
-    <td>{{tenencia[5]}}</td>
+    <td>{{stock[5]}}</td>
     <td>
-      {% if tenencia[1] > fechaHoy %}
+      {% if stock[1] > fechaHoy %}
         <span>
       {% else %}
-        {% if tenencia[1] < fechaAyer %}
+        {% if stock[1] < fechaAyer %}
           <span class="badge bg-danger">
         {% else %}
           <span class="badge bg-warning">
         {% endif %}
       {% endif %}
-      {{tenencia[1]}}</span>
+      {{stock[1]}}</span>
     </td>
-    <td>{{tenencia[2]}}</td>
+    <td>{{stock[2]}}</td>
     {% if noMostarFechaUso %}
     {% else %}
-      <td>{{tenencia[3]}}</td>
+      <td>{{stock[3]}}</td>
     {% endif %}
     <td>
       <!-- Aciones -->
-      <div class="row justify-content-center">
-        <div class="col-3">
-          <a href="/{{entidad}}/modificar/{{tenencia[0]}}" class="btn btn-warning btn-block w-100">
-            <i class="bi bi-pencil-square"></i>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="/{{entidad}}/borrar/{{tenencia[0]}}" class="btn btn-danger btn-block w-100">
-            <i class="bi bi-trash3-fill"></i>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href=
+      <!-- <div class="row justify-content-center"> -->
+      <div class="container">
+        <div class="row row-cols-2 row-cols-lg-4">
+          <div class="col">
+            <a href="/{{entidad}}/modificar/{{stock[0]}}" class="btn btn-warning btn-block w-100">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+          </div>
+          <div class="col">
+            <a href="/{{entidad}}/borrar/{{stock[0]}}" class="btn btn-danger btn-block w-100">
+              <i class="bi bi-trash3-fill"></i>
+            </a>
+          </div>
+          <div class="col">
+            <a href=
+              {% if retornarAEspecial != "" %}
+                "/{{entidad}}/consumir/{{stock[0]}}?retornarA={{retornarAEspecial}}"
+              {% else %}
+                "/{{entidad}}/consumir/{{stock[0]}}" 
+              {% endif %}
+            class="btn btn-primary btn-block w-100">-1</a>
+          </div>
+          <div class="col">
+            <a href=
             {% if retornarAEspecial != "" %}
-              "/{{entidad}}/consumir/{{tenencia[0]}}?retornarA={{retornarAEspecial}}"
+              "/{{entidad}}/duplicar/{{stock[0]}}?retornarA={{retornarAEspecial}}"
             {% else %}
-              "/{{entidad}}/consumir/{{tenencia[0]}}" 
+              "/{{entidad}}/duplicar/{{stock[0]}}"
             {% endif %}
-          class="btn btn-primary btn-block w-100">-1</a>
-        </div>
-        <div class="col-3">
-          <a href=
-          {% if retornarAEspecial != "" %}
-            "/{{entidad}}/duplicar/{{tenencia[0]}}?retornarA={{retornarAEspecial}}"
-          {% else %}
-            "/{{entidad}}/duplicar/{{tenencia[0]}}"
-          {% endif %}
-          class="btn btn-success btn-block w-100">+1</a>
+            class="btn btn-success btn-block w-100">+1</a>
+          </div>
         </div>
       </div>
     </td>
